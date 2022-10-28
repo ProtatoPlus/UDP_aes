@@ -35,7 +35,10 @@ def decrypt(passwrd, message):
     key = bytes(passwrd, "utf-8")
     iv = Random.new().read(AES.block_size)
     cipher = AES.new(key, AES.MODE_CFB, iv)
-    msg = cipher.decrypt(binascii.unhexlify(bytes(message, "utf-8")))[len(iv):]
+    try:        
+        msg = cipher.decrypt(binascii.unhexlify(bytes(message, "utf-8")))[len(iv):]
+    except:
+        print("An error occured that has yet to be patched.")
     for letter in str(msg):
         msglist.append(letter)
     msglist.remove("b")
