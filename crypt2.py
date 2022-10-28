@@ -17,6 +17,19 @@ def encrypt(passwrd, message):
     fcipher = ''.join(msglist)
     return fcipher
 
+def padded_hex(i, l):
+    given_int = i
+    given_len = l
+
+    hex_result = hex(given_int)[2:] # remove '0x' from beginning of str
+    num_hex_chars = len(hex_result)
+    extra_zeros = '0' * (given_len - num_hex_chars) # may not get used..
+
+    return ('0x' + hex_result if num_hex_chars == given_len else
+            '?' * given_len if num_hex_chars > given_len else
+            '0x' + extra_zeros + hex_result if num_hex_chars < given_len else
+            None)
+
 def decrypt(passwrd, message):
     msglist = []
     key = bytes(passwrd, "utf-8")
