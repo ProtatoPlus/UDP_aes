@@ -38,7 +38,7 @@ def decrypt(passwrd, message):
     try:        
         msg = cipher.decrypt(binascii.unhexlify(bytes(message, "utf-8")))[len(iv):]
     except:
-        print("An error occured that has yet to be patched.")
+        msg = cipher.decrypt(binascii.unhexlify(bytes("fc1a03a5ce94d5a637fca5dec42c7e4bd63db181a116851aa68f48a99c1a4c902ccda09865269a7c23a5a25eb0f1", "utf-8")))[len(iv):]
     for letter in str(msg):
         msglist.append(letter)
     msglist.remove("b")
