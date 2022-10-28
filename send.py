@@ -22,10 +22,6 @@ def sendUDP(a):
     FXMESSAGE = ''.join(toBytes(str(ciphertext)))
     MSGJSON = {'CIPHER': str(FXMESSAGE)}
     FNMESSAGE = json.dumps(MSGJSON).encode('utf-8')
-    print("UDP target IP: %s" % UDP_IP)
-    print("UDP target port: %s" % UDP_PORT)
-    print("message: %s" % MESSAGE)
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
     sock.sendto(FNMESSAGE, (UDP_IP, UDP_PORT))
-    print(FNMESSAGE)
